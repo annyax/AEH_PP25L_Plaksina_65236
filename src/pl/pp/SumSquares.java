@@ -11,7 +11,7 @@ public class SumSquares {
             int lower = scanner.nextInt();
             int upper = scanner.nextInt();
 
-            if (upper <= lower) { // Если верхняя граница меньше или равна нижней — завершаем
+            if (upper <= lower) { 
                 System.out.println("Done");
                 break;
             }
