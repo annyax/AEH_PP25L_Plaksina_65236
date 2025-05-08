@@ -1,7 +1,8 @@
 package pl.pp;
 
 public class Circle {
-    private double radius;
+
+    private double radius; // Make the radius private
 
     public Circle() {
     }
@@ -10,16 +11,14 @@ public class Circle {
         this.radius = radius;
     }
 
+    // Getter for radius
     public double getRadius() {
         return radius;
     }
 
+    // Setter for radius
     public void setRadius(double radius) {
         this.radius = radius;
-    }
-
-    public void increaseRadius(double increment) {
-        this.radius += increment;
     }
 
     public double area() {
@@ -31,6 +30,6 @@ public class Circle {
     }
 
     public void getInfo() {
-        System.out.println("Circle: radius = " + radius + ", area = " + area() + ", circumference = " + circumference());
+        System.out.println("Circle with radius = " + radius + ", area = " + area() + " and circumference = " + circumference());
     }
 }
