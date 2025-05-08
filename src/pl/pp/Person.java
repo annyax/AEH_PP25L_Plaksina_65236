@@ -1,49 +1,49 @@
 package pl.pp;
 
 public class Person {
-    public String forename;
-    public String surname;
-    public int age;
-    public String address;
-    public int birthYear;
+    private String forename;
+    private String surname;
+    private int age;
+
     public Person() {
     }
 
-    public Person(String initForename, String initSurname, int initAge) {
-        forename = initForename;
-        surname = initSurname;
-        age = initAge;
-    }
-
-    public Person(String initForename, String initSurname, int initAge, String address, int birthYear) {
-        forename = initForename;
-        surname = initSurname;
-        age = initAge;
-        this.address = address;
-        this.birthYear = birthYear;
+    public Person(String forename, String surname, int age) {
+        this.forename = forename;
+        this.surname = surname;
+        this.age = age;
     }
 
     public void hiToAll() {
-        System.out.println("Nazywam się " + forename + " " + surname + ". Mam " + age + " lat.");
-        if (address != null) System.out.println("Adres: " + address);
-        if (birthYear != 0) System.out.println("Rok urodzenia: " + birthYear);
+        System.out.println(forename + " " + surname + ", " + age + " lat");
     }
 
-    public int growOld(int years) {
-        age += years;
+    public int growOld(int age) {
+        this.age += age;
         return age;
     }
 
-    public int beYounger() {
-        age -= 1;
-        return age;
-    }
-
-    public String getName() {
+    public String getForename() {
         return forename;
     }
 
-    public void setName(String nameToSet) {
-        forename = nameToSet;
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }
