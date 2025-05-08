@@ -6,7 +6,6 @@ public class Person {
     public int age;
     public String address;
     public int birthYear;
-
     public Person() {
     }
 

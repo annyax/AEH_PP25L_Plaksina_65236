@@ -3,7 +3,6 @@ public class mojaSiodmaAplikacja {
     public static void main(String[] args) {
         Person person1 = new Person("Mateusz", "Karmazyn", 24, "Warszawa", 2000);
         person1.hiToAll();
-
         Person person2 = new Person("Dariusz", "Walendziak", 42);
         person2.hiToAll();
 
