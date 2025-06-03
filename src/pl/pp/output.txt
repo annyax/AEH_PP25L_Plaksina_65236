@@ -1,0 +1,2 @@
+Nazwa pliku: /Users/anyaplaksina/Desktop/programming/java/untitled1/src/pl/pp/sample_text.txt
+Liczba linii: 10
