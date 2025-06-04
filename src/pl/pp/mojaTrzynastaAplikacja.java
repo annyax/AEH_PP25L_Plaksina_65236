@@ -1,12 +1,17 @@
+
+package pl.pp;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
-public class mojaDwunastaAplikacja {
+public class mojaTrzynastaAplikacja {
     public static void main(String[] args) {
         Scanner skaner = new Scanner(System.in);
         String sciezkaWejsciowa = "";
@@ -27,24 +32,42 @@ public class mojaDwunastaAplikacja {
         sciezkaWyjsciowa = skaner.nextLine();
 
         try {
-            int liczbaLinii = 0;
-            try (BufferedReader czytelnik = new BufferedReader(new FileReader(sciezkaWejsciowa))) {
-                while (czytelnik.readLine() != null) {
-                    liczbaLinii++;
+            int liczbaSlow = 0;
+            Map<String, Integer> czestoscSlow = new HashMap<>();
+
+            // Czytanie pliku i liczenie słów
+            try (BufferedReader reader = new BufferedReader(new FileReader(sciezkaWejsciowa))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] words = line.replaceAll("[^a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]", " ").toLowerCase().split("\\s+");
+                    for (String word : words) {
+                        if (!word.isBlank()) {
+                            liczbaSlow++;
+                            czestoscSlow.put(word, czestoscSlow.getOrDefault(word, 0) + 1);
+                        }
+                    }
                 }
             } catch (IOException e) {
                 System.out.println("Błąd podczas odczytu pliku wejściowego: " + e.getMessage());
                 return;
             }
 
-            System.out.println("Liczba linii w pliku " + sciezkaWejsciowa + ": " + liczbaLinii);
+            System.out.println("Liczba słów w pliku " + sciezkaWejsciowa + ": " + liczbaSlow);
+            System.out.println("Częstość wystąpień słów:");
+            for (Map.Entry<String, Integer> wpis : czestoscSlow.entrySet()) {
+                System.out.println(wpis.getKey() + ": " + wpis.getValue());
+            }
 
+            // Zapis do pliku wyjściowego
             try (FileWriter pisarz = new FileWriter(sciezkaWyjsciowa)) {
                 pisarz.write("Nazwa pliku: " + sciezkaWejsciowa + "\n");
-                pisarz.write("Liczba linii: " + liczbaLinii + "\n");
+                pisarz.write("Liczba słów: " + liczbaSlow + "\n");
+                pisarz.write("Częstość wystąpień słów:\n");
+                for (Map.Entry<String, Integer> wpis : czestoscSlow.entrySet()) {
+                    pisarz.write(wpis.getKey() + ": " + wpis.getValue() + "\n");
+                }
             } catch (IOException e) {
                 System.out.println("Błąd podczas zapisu do pliku wyjściowego: " + e.getMessage());
-                return;
             }
 
         } catch (Exception e) {
